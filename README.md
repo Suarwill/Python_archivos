@@ -25,5 +25,5 @@ Cada archivo se enfoca en una tarea específica y proporciona un ejemplo de cóm
 
 Cada archivo Python se puede ejecutar independientemente. Asegúrate de tener Python instalado en tu sistema y simplemente ejecuta el archivo correspondiente para ver la demostración o jugar al juego.
 
-```bash
-python Juego_PiedraPapelTijera.py
+### Gracias.
+Siéntete libre de explorar, aprender y modificar estos scripts según tus necesidades. ¡Diviértete programando, asi como yo!
