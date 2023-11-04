@@ -66,19 +66,14 @@ def concursoAutomatico():
         CONCURSANTE = random.choice(("A","B","C"))
         if CONCURSANTE == GANADORA:
             ABIERTA = random.choice((NOGANADORAS))
-            if ABIERTA == PERDEDORA1:   NOABIERTA = PERDEDORA2
-            else:                       NOABIERTA = PERDEDORA1
-        elif CONCURSANTE == PERDEDORA1:
-            ABIERTA,NOABIERTA = PERDEDORA2,PERDEDORA1
-        elif CONCURSANTE == PERDEDORA2:
-            ABIERTA,NOABIERTA = PERDEDORA1, PERDEDORA2
+            if ABIERTA == PERDEDORA1:                   NOABIERTA = PERDEDORA2
+            else:                                       NOABIERTA = PERDEDORA1
+        elif CONCURSANTE == PERDEDORA1:                             ABIERTA,NOABIERTA = PERDEDORA2,PERDEDORA1
+        elif CONCURSANTE == PERDEDORA2:                             ABIERTA,NOABIERTA = PERDEDORA1, PERDEDORA2
         NUEVADECISION = str(AutoDecision)
-        if NUEVADECISION == "SI" and CONCURSANTE == GANADORA:
-            Perdedoras += 1
-        elif NUEVADECISION == "NO" and CONCURSANTE == NOABIERTA:
-            Perdedoras += 1
-        else:
-            Ganadoras += 1
+        if NUEVADECISION == "SI" and CONCURSANTE == GANADORA:       Perdedoras += 1
+        elif NUEVADECISION == "NO" and CONCURSANTE == NOABIERTA:    Perdedoras += 1
+        else:                                                       Ganadoras += 1
     print ("Cantidad de concursos: ", Nro_sorteos)
     print ("Cantidad de concursos ganadores: ",Ganadoras)
     print ("Cantidad de concursos perdedores: ",Perdedoras)
