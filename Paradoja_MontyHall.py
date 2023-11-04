@@ -55,38 +55,33 @@ def concursoPausado():
         print ("\nFelicitaciones, has ganado un AUTO, la puerta correcta era la : ", GANADORA)
     return
 
-def concursoPausado(Cant_Sorteos,):
-    GANADORA,PERDEDORA1,PERDEDORA2 = azar()
-    Cant_Sorteos = ()
-    NOGANADORAS = (PERDEDORA1,PERDEDORA2)
-    while True:
-        CONCURSANTE = str.upper(input("Elige una puerta (A, B o C): "))
-        print ("Elegiste la puerta : ",CONCURSANTE)
+def concursoAutomatico():
+    Cant_Sorteos = int(input("Elija cantidad de sorteos: "))
+    AutoDecision = str.upper(input("Decision automatica de cambiar de puerta: ( SI / NO ) : "))
+    Nro_sorteos, Ganadoras, Perdedoras = 0,0,0
+    for x in range(Cant_Sorteos):
+        GANADORA,PERDEDORA1,PERDEDORA2 = azar()
+        NOGANADORAS = (PERDEDORA1,PERDEDORA2)
+        Nro_sorteos += 1
+        CONCURSANTE = random.choice(("A","B","C"))
         if CONCURSANTE == GANADORA:
             ABIERTA = random.choice((NOGANADORAS))
             if ABIERTA == PERDEDORA1:   NOABIERTA = PERDEDORA2
             else:                       NOABIERTA = PERDEDORA1
-            print ("En la puerta ",ABIERTA,"hay una CABRA")
-            break
         elif CONCURSANTE == PERDEDORA1:
             ABIERTA,NOABIERTA = PERDEDORA2,PERDEDORA1
-            print ("En la puerta ",ABIERTA,"hay una CABRA")
-            break
         elif CONCURSANTE == PERDEDORA2:
             ABIERTA,NOABIERTA = PERDEDORA1, PERDEDORA2
-            print ("En la puerta ",ABIERTA,"hay una CABRA")
-            break
+        NUEVADECISION = str(AutoDecision)
+        if NUEVADECISION == "SI" and CONCURSANTE == GANADORA:
+            Perdedoras += 1
+        elif NUEVADECISION == "NO" and CONCURSANTE == NOABIERTA:
+            Perdedoras += 1
         else:
-            print ("Por favor eliga una puerta correctamente")
+            Ganadoras += 1
+    print ("Cantidad de concursos: ", Nro_sorteos)
+    print ("Cantidad de concursos ganadores: ",Ganadoras)
+    print ("Cantidad de concursos perdedores: ",Perdedoras)
+    print ("\nPorcentaje de concursos ganados eligiendo: ",AutoDecision,":",Ganadoras*100/Nro_sorteos,"%")
 
-    NUEVADECISION = str.upper(input("¿Quiere cambiar de PUERTA? ( SI / NO ) : "))
-
-    if NUEVADECISION == "SI" and CONCURSANTE == GANADORA:
-        print ("\nLo lamentamos, has perdido el AUTO se encontraba en la PUERTA ", GANADORA)
-    elif NUEVADECISION == "NO" and CONCURSANTE == NOABIERTA:
-        print ("\nLo lamentamos, has perdido el AUTO se encontraba en la PUERTA ", GANADORA)
-    else:
-        print ("\nFelicitaciones, has ganado un AUTO, la puerta correcta era la : ", GANADORA)
-    return
-
-__main__= concursoPausado()
+__main__= concursoAutomatico()
